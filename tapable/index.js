@@ -20,7 +20,7 @@ class Lesson{
 }
 
 var l = new Lesson();
-l.tap();
-l.start();
+l.tap();//注册事件
+l.start();//钩子启动
 
 // 发布订阅者模式
