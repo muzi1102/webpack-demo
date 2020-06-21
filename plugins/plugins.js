@@ -18,7 +18,6 @@ class BasicPlugin {
     }
     // 处理引入标签的数据
     processTags(data,compilation){
-        debugger
         let bodyTags = [];
         data.bodyTags.forEach((bodyTag)=>{
             bodyTags.push(this.processTag(bodyTag,compilation));
@@ -45,9 +44,7 @@ class BasicPlugin {
     // Webpack 会调用 BasicPlugin 实例的 apply 方法给插件实例传入 compiler 对象
     apply(compiler){
         compiler.hooks.compilation.tap('myplugin',(compilation)=> {
-            log('compilation')
             HtmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync('alterplugins',(data,cb)=>{
-                console.log(this)
                 data = this.processTags(data,compilation);
                 log(`${chalk.red(data)}`)
                 cb(null,data)
